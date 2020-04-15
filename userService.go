@@ -158,7 +158,7 @@ func (u *UserService) ListMP(filter *UserFilter, limit int) (result []*UserEntit
 	if filter.State != 0 {
 		u.session.Where("state=?", filter.State)
 	}
-
+	u.session.OrderBy("id desc")
 	if limit > 0 {
 		u.session.Limit(limit, (filter.Page-1)*limit)
 		total, err = u.session.FindAndCount(&result)
