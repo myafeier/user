@@ -49,6 +49,7 @@ func (u *UserService) Insert(user *UserPostForm, byUser *UserEntity) (userErr er
 	ue.Avatar = user.Avatar
 	ue.RoleId = user.RoleId
 	ue.ShopId = user.ShopId
+	ue.MerchantId = user.MerchantId
 	ue.WxId = user.WxId
 	_, err = u.session.Insert(ue)
 	return
