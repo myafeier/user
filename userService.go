@@ -40,10 +40,6 @@ func (u *UserService) Insert(user *UserPostForm, byUser *UserEntity) (userErr er
 		userErr = fmt.Errorf("用户名密码不可为空")
 		return
 	}
-	if user.RoleId == UserRoleWorker && user.ShopId == 0 {
-		userErr = fmt.Errorf("普通用户必须指定门店")
-		return
-	}
 	ue := new(UserEntity)
 	ue.Passport = user.Passport
 	ue.Password = generatePassword(user.Password)
