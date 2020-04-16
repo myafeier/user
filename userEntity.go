@@ -33,7 +33,7 @@ type UserEntity struct {
 	Sex        string    `json:"sex"  xorm:"varchar(10) default ''"`             //性别
 	Avatar     string    `json:"avatar" xorm:"varchar(100) default ''"`          //头像
 	RoleId     UserRole  `json:"role_id" xorm:"tinyint(2) default 0 index"`      //角色id
-	MerchantId int64     `json:"merchant" xorm:"default 0 index"`                //所属商户id
+	MerchantId int64     `json:"merchant_id" xorm:"default 0 index"`             //所属商户id
 	ShopId     int64     `json:"shop_id" xorm:"default 0 index"`                 //门店id
 	WxId       int64     `json:"wx_id" xorm:"default 0 index"`                   //关联的顾客id
 	Created    time.Time `json:"created" xorm:"created"`                         //
