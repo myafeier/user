@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 
+	"github.com/ngaut/log"
 	"xorm.io/xorm"
 )
 
@@ -40,6 +41,16 @@ func (u *UserService) Insert(user *UserPostForm, byUser *UserEntity) (userErr er
 		userErr = fmt.Errorf("用户名密码不可为空")
 		return
 	}
+	has, err := u.session.Where("passport=?", user.Passport).Get(&UserEntity{})
+	if err != nil {
+		log.Error(err.Error())
+		return
+	}
+	if has {
+		userErr = fmt.Errorf("此用户名已存在,请检查用户状态")
+		return
+	}
+
 	ue := new(UserEntity)
 	ue.Passport = user.Passport
 	ue.Password = generatePassword(user.Password)
