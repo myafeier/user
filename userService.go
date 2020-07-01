@@ -134,7 +134,9 @@ func (u *UserService) Update(user *UserPutForm, updateCols ...string) (userErr e
 	}
 	ue := new(UserEntity)
 	ue.Passport = user.Passport
-	ue.Password = ""
+	if ue.Password != "" {
+		ue.Password = generatePassword(ue.Passport)
+	}
 	ue.State = user.State
 	ue.Name = user.Name
 	ue.Sex = user.Sex
