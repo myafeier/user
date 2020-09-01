@@ -26,6 +26,7 @@ func (u UserState) String() string {
 
 type UserEntity struct {
 	Id         int64     `json:"id"`
+	Uuid       string    `json:"uuid" xorm:"default '' unique"`
 	State      UserState `json:"state" xorm:"default 0 index"`                   //状态,default 1
 	Passport   string    `json:"passport" xorm:"varchar(100) default '' unique"` //手机号码
 	Password   string    `json:"-" xorm:"varchar(100) default ''"`               //
